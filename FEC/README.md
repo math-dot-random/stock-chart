@@ -8,6 +8,13 @@
   - https://github.com/math-dot-random/price-paid-chart
   - https://github.com/math-dot-random/suggestions
 
+
+## Setup
+
+- [ ] `npm install`
+- [ ] `npm run react-dev` to run the pre-configured webpack
+- [ ] `npm start` to run the json-server
+
   ## Directions
 
  1. To create mysql database execute this file from the command line by typing:
