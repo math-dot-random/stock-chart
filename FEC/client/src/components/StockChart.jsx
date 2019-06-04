@@ -124,7 +124,7 @@ class StockChart extends React.Component {
         const currentPrice = this.props.currentPrice;
         const closingPrice = this.props.closingPrice;
         const currentVal = currentPrice ? `$${currentPrice}` : 'Not Available';
-        const priceDifference = (closingPrice - currentPrice).toFixed(2);
+        const priceDifference = (currentPrice - closingPrice).toFixed(2);
         const pricePercentage = (priceDifference/closingPrice).toFixed(3);
         const sign = priceDifference > 0 ? '+' : '-';
         const differenceString = priceDifference < 0 ? `${sign}$${Math.abs(priceDifference)}   ` : `${sign}$${priceDifference}   `;

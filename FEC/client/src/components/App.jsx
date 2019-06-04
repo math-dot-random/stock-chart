@@ -38,12 +38,12 @@ class App extends React.Component {
             type: 'GET',
             success: (data) => {
                 const currentPrice = data[data.length -1].price;
-                const randomNum = Math.random()*20;
+                const randomNum = Math.random()*5;
                 const num = Number(randomNum.toFixed(2));
                 const random = Math.random();
                 const closingPrice = (random > 0.5) ? Number(currentPrice - num): Number(currentPrice + num);
-                const market = closingPrice < currentPrice ? 'Bear' : 'Bull'
-                const color = this.props.market === 'Bull' ? '#21CE99': '#F45531'
+                const market = (closingPrice > currentPrice) ? 'Bear' : 'Bull';
+                const color = (market === 'Bull') ? '#21CE99': '#F45531';
                 this.setState({
                     priceData: data,
                     stockName: data[0].name,
