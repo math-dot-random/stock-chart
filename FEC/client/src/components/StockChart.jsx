@@ -6,64 +6,40 @@ import styled from 'styled-components';
 const OneDTag = styled.a`
    margin: 0px 12px;
 
-   &:hover {
-    color: #21CE99;
-   }
-
-   border-bottom: ${props => props.type === '1D' ? '#21CE99 1px solid' : 'none'};
-   color: ${props => props.type === '1D' ? '#21CE99' : 'black'};
+   border-bottom: ${props => props.type === '1D' ? `${props.color} 1px solid` : 'none'};
+   color: ${props => props.type === '1D' ? props.color : 'black'};
 `;
 const OneWTag = styled.a`
    margin: 0px 12px;
 
-   &:hover {
-    color: #21CE99;
-   }
-
-   border-bottom: ${props => props.type === '1W' ? '#21CE99 1px solid' : 'none'};
-   color: ${props => props.type === '1W' ? '#21CE99' : 'black'};
+   border-bottom: ${props => props.type === '1W' ? `${props.color} 1px solid` : 'none'};
+   color: ${props => props.type === '1W' ? props.color : 'black'};
 `;
 
 const OneMTag = styled.a`
    margin: 0px 12px;
 
-   &:hover {
-    color: #21CE99;
-   }
-
-   border-bottom: ${props => props.type === '1M' ? '#21CE99 1px solid' : 'none'};
-   color: ${props => props.type === '1M' ? '#21CE99' : 'black'};
+   border-bottom: ${props => props.type === '1M' ? `${props.color} 1px solid` : 'none'};
+   color: ${props => props.type === '1M' ? props.color : 'black'};
 `;
 const ThreeMTag = styled.a`
    margin: 0px 12px;
 
-   &:hover {
-    color: #21CE99;
-   }
-
-   border-bottom: ${props => props.type === '3M' ? '#21CE99 1px solid' : 'none'};
-   color: ${props => props.type === '3M' ? '#21CE99' : 'black'};
+   border-bottom: ${props => props.type === '3M' ? `${props.color} 1px solid` : 'none'};
+   color: ${props => props.type === '3M' ? props.color  : 'black'};
 `;
 
 const OneYTag = styled.a`
    margin: 0px 12px;
 
-   &:hover {
-    color: #21CE99;
-   }
-
-   border-bottom: ${props => props.type === '1Y' ? '#21CE99 1px solid' : 'none'};
-   color: ${props => props.type === '1Y' ? '#21CE99' : 'black'};
+   border-bottom: ${props => props.type === '1Y' ? `${props.color} 1px solid` : 'none'};
+   color: ${props => props.type === '1Y' ? props.color : 'black'};
 `;
 const FiveYTag = styled.a`
    margin: 0px 12px;
 
-   &:hover {
-    color: #21CE99;
-   }
-
-   border-bottom: ${props => props.type === '5Y' ? '#21CE99 1px solid' : 'none'};
-   color: ${props => props.type === '5Y' ? '#21CE99' : 'black'};
+   border-bottom: ${props => props.type === '5Y' ? `${props.color} 1px solid` : 'none'};
+   color: ${props => props.type === '5Y' ? props.color : 'black'};
 `;
 
 const NavType = styled.nav`
@@ -79,8 +55,8 @@ const NavType = styled.nav`
    `;
 
 const SectionWrapper = styled.section`
-   width: 676px;
-   height: 349px;
+   width: auto;
+   height: auto;
 `;
 
 const ChartBox = styled.div`
@@ -142,28 +118,15 @@ class StockChart extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            currentPrice: 200.00,
-            closingPrice: 210.00,
-            amountDiff: 2.00,
-            percentDiff: 0.012,
-        }
     }
 
-    componentDidMount() {
-        const random = (Math.random());
-        const currentPrice = 200;
-        const closing = random < 0.5 ? currentPrice + (Math.random() * 20) : currentPrice - (Math.random() * 5);
-        this.setState({
-            currentPrice: currentPrice,
-            closingPrice: closing
-        })
-    }
+
     render() {
-        const color = (this.props.market === 'Bull' ? '#f45531' : '#21CE99');
-        const currentVal = `$${this.state.currentPrice}`;
-        const priceDifference = (this.state.closingPrice - this.state.currentPrice).toFixed(2);
-        const pricePercentage = (priceDifference/this.state.closingPrice).toFixed(3);
+        const currentPrice = this.props.currentPrice;
+        const closingPrice = this.props.closingPrice;
+        const currentVal = currentPrice ? `$${currentPrice}` : 'Not Available';
+        const priceDifference = (closingPrice - currentPrice).toFixed(2);
+        const pricePercentage = (priceDifference/closingPrice).toFixed(3);
         const sign = priceDifference > 0 ? '+' : '-';
         const differenceString = priceDifference < 0 ? `${sign}$${Math.abs(priceDifference)}   ` : `${sign}$${priceDifference}   `;
         const percentString = pricePercentage <= 0 ? `(${Math.abs(pricePercentage)} %)` : `(${pricePercentage} %)`;
@@ -183,15 +146,15 @@ class StockChart extends React.Component {
                 </PriceHeader>
                 <Spacer></Spacer>
                 <ChartBox style={{position: 'relative', width: 676, height: 196}}>
-                    <LineChart stockData={this.props.stockData}/>
+                    <LineChart stockData={this.props.stockData} color={this.props.color}/>
                 </ChartBox>
             <NavType className='stock-type-nav'>
-                <OneDTag type={this.props.type}name="1D" onClick={this.props.handleGraphTypeChange}>1D</OneDTag>
-                <OneWTag type={this.props.type} name="1W" onClick={this.props.handleGraphTypeChange} >1W</OneWTag>
-                <OneMTag type={this.props.type} name="1M" onClick={this.props.handleGraphTypeChange} >1M</OneMTag>
-                <ThreeMTag type={this.props.type} name="3M" onClick={this.props.handleGraphTypeChange} >3M</ThreeMTag>
-                <OneYTag type={this.props.type} name="1Y" onClick={this.props.handleGraphTypeChange}>1Y</OneYTag>
-                <FiveYTag type={this.props.type} name="5Y" onClick={this.props.handleGraphTypeChange}>5Y</FiveYTag>
+                <OneDTag type={this.props.type}name="1D" onClick={this.props.handleGraphTypeChange} color={this.props.color}>1D</OneDTag>
+                <OneWTag type={this.props.type} name="1W" onClick={this.props.handleGraphTypeChange} color={this.props.color}>1W</OneWTag>
+                <OneMTag type={this.props.type} name="1M" onClick={this.props.handleGraphTypeChange} color={this.props.color}>1M</OneMTag>
+                <ThreeMTag type={this.props.type} name="3M" onClick={this.props.handleGraphTypeChange} color={this.props.color}>3M</ThreeMTag>
+                <OneYTag type={this.props.type} name="1Y" onClick={this.props.handleGraphTypeChange} color={this.props.color}>1Y</OneYTag>
+                <FiveYTag type={this.props.type} name="5Y" onClick={this.props.handleGraphTypeChange} color={this.props.color}>5Y</FiveYTag>
             </NavType>
             </SectionWrapper>
         )
