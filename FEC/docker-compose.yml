@@ -1,0 +1,24 @@
+//this file is not being used 
+
+version: '3'
+
+services:
+  stockchart:
+    build: .
+    depends_on:
+      - 'database'
+    ports:
+      - '3001:3001'
+
+  database:
+    image: mysql:latest
+    ports:
+      - '3306:3306'
+    volumes: mysqldata:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: catherine
+      MYSQL_DATABASE: robinhood_stock_chart
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+

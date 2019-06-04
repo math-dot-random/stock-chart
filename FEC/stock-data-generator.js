@@ -1,5 +1,5 @@
 /*
-These mysql INSERT statements were appended to the mysqldata.sql file using this command:
+The below generated mysql INSERT statements were appended to the mysqldata.sql file execute this in the command line:
 node stock-data-generator >> mysqldata.sql
 */
 
@@ -32,7 +32,7 @@ It will generate mysql INSERT statements for each stock
 In total there are 126,000 rows in this table:
     1 year = 252 trading days
     1 data point every day = 252 data points
-    5 years of data = 1,260 data points 
+    5 years of data = 1,260 data points
     total data points: 100*252*5=126,000
 */
 

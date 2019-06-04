@@ -8,6 +8,7 @@ CREATE DATABASE robinhood_stock_chart;
 
 USE robinhood_stock_chart;
 
+
 CREATE TABLE stock_info (
 id INT NOT NULL AUTO_INCREMENT,
 stock_name varchar(100) NOT NULL,
