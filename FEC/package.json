@@ -1,12 +1,15 @@
 {
   "name": "fec",
   "version": "1.0.0",
-  "description": "Robinhood.com Clone",
+  "description": "",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
     "start": "nodemon server/index.js",
-    "react-dev": "webpack -d --watch"
+    "react-dev": "webpack -d --watch",
+    "make-database": "mysql -u root< schema.sql",
+    "seed-data": "mysql -u root< mysqldata.sql",
+    "superstart": "node.js make-database seed-data start"
   },
   "author": "Catherine OKane",
   "license": "ISC",
@@ -41,6 +44,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
     "jest": "^24.8.0",
+    "npm-run-all": "^4.1.5",
     "supertest": "^4.0.2",
     "webpack": "^2.2.1"
   }

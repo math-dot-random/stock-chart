@@ -27,8 +27,9 @@ app.get('/', (req, res) => {
 
 //GET request for stock price data
 app.get('/api/stocks/:ticker/prices/:type', (req, res) => {
+    let ticker = req.params.ticker.toUpperCase();
     if (req.params.type === '1D' || req.params.type === '1W' || req.params.type === '1M') {
-        db.getOneDayWeekMonthData(req.params.ticker, req.params.type, (err, results) => {
+        db.getOneDayWeekMonthData(ticker, req.params.type, (err, results) => {
             if (err) {
                 res.status(500);
                 res.send(err);
@@ -38,7 +39,7 @@ app.get('/api/stocks/:ticker/prices/:type', (req, res) => {
             }
         })
     } else if (req.params.type === '3M' || req.params.type === '1Y' || req.params.type === '5Y') {
-        db.getThreeMonthOneYearFiveYearData(req.params.ticker, req.params.type, (err, results) => {
+        db.getThreeMonthOneYearFiveYearData(ticker, req.params.type, (err, results) => {
             if (err) {
                 res.status(500);
                 res.send(err);

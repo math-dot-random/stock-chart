@@ -1,1 +1,9 @@
+@font-face {
+    font-family: 'dinpro';
+    src: url('fonts/dinpro.otf');
+}
 
+body {
+    font-family: 'dinpro';
+    font-size: 12px;
+}
