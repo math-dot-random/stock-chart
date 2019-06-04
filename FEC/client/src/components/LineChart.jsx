@@ -184,7 +184,7 @@ class LineChart extends React.Component {
           {this.makeDottedAxis()}
           {this.state.hoverLocation ? this.makeHoverLine() : null}
           {this.state.hoverLocation ? this.makeActivePoint() : null}
-        </svg>) : (<div> Graph Currently Unavailable </div>);
+        </svg>) : (<div> There was an error loading the chart. </div>);
         return (
             <div>
               {graph}

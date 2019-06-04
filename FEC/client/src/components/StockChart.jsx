@@ -120,7 +120,6 @@ class StockChart extends React.Component {
 
     }
 
-
     render() {
         const currentPrice = this.props.currentPrice;
         const closingPrice = this.props.closingPrice;
